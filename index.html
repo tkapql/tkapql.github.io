@@ -8,22 +8,26 @@
   <h2>How TKAPQL works</h2>
   TKAPQL in its essence is very simple, and you could say it has been derived from RADIUS. First of all, we make simple use of the HTTPS Authorization header, since the only thing distinguishing clients from one another is the bearer token they provide in the Authorization header. 
   TKAPQL only utilizes one simple endpoint: <code>/kulupu</code> (kulupu means "group", or "collective"). Here is what the client sends to the server when asking for authentication:
+  
   <code>
-  POST /kulupu HTTPS/1.1
-  Host: example.com
-  Authorization: bearerToken
-  Content-Type: application/x-www-form-urlencoded
-  Content-Length: something
-  nimi = username
-  lawa = password
+  POST /kulupu HTTPS/1.1<br>
+  Host: example.com<br>
+  Authorization: bearerToken<br>
+  Content-Type: application/x-www-form-urlencoded<br>
+  Content-Length: something<br>
+  nimi = username<br>
+  lawa = password<br>
   </code>
+  
   You might have noticed the plaintext password. TKAPQL only allows for HTTPS, so this is safe (any use of HTTP in a TKAPQL request shall be refused by the server).
   If the authentication fails for a simple reason, the server returns <code>lon=ike</code> and an HTTP code 400 (ike means bad). If the reason for failure is complicated, the server shall return <code>lon=ike suli</code> (suli means very) and HTTP code 500.
   Finally, if the authentication succeeds, the server sends back
+  
   <code>
-  lon=pona
-  kulupu=accounting,admin,hr
-  linja=steve@example.com
+  lon=pona<br>
+  kulupu=accounting,admin,hr<br>
+  linja=steve@example.com<br>
   </code>
+  
   That, folks, is the entire TKAPQL spec sheet. One day, additional fields may be added, but will not be considered essential parts of TKAPQL.
 </body>
